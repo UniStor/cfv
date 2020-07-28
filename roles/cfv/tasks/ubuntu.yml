@@ -35,8 +35,8 @@
   script: get-pip.py
   args:
     executable: python2
+    creates: /usr/local/bin/pip2
   become: yes
-  creates: /usr/local/bin/pip2
 
 - pip:
     name: cfv

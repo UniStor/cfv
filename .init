@@ -1,7 +1,7 @@
 pre(){
 sudo apt install -y ansible sshpass
 cp hosts-template hosts
-sudo ln -sr ~/uni/UniFS/hosts /etc/ansible/
+sudo ln -srf hosts /etc/ansible/
 }
 
 run(){
