@@ -1,0 +1,12 @@
+pre(){
+sudo apt install -y ansible sshpass
+cp hosts-template hosts
+sudo ln -sr ~/uni/UniFS/hosts /etc/ansible/
+}
+
+run(){
+ansible-playbook uni.yml
+}
+
+pre
+run

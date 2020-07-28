@@ -1,0 +1,2 @@
+[bac]
+akum ansible_host=192.168.122.122 ansible_password=u ansible_user=me ansible_become_password=u

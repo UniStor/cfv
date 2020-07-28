@@ -1,0 +1,44 @@
+# https://linuxize.com/post/how-to-install-pip-on-ubuntu-20.04/
+
+- name: codename
+  import_tasks: codename.yml
+
+- name: python3-pip, curl
+  become: yes
+  apt:
+    update_cache: yes
+    pkg:
+    - python3-pip
+    - curl
+
+- name: Enable universe repository
+  become: yes
+  apt_repository:
+    repo: "{{ item }}"
+  loop:
+  - "deb http://archive.ubuntu.com/ubuntu/ {{codename.stdout}} universe"
+  - "deb http://archive.ubuntu.com/ubuntu/ {{codename.stdout}}-updates universe"
+  - "deb http://security.ubuntu.com/ubuntu/ {{codename.stdout}}-security universe"
+  # https://github.com/ansible/ansible/issues/48714
+
+- apt: 
+    name: python2
+    update_cache: yes
+  become: yes
+
+# Not needed if using role's files !
+#- get_url:
+#    url: https://bootstrap.pypa.io/get-pip.py
+#    dest: /tmp/get-pip.py
+
+- name: get-pip.py
+  script: get-pip.py
+  args:
+    executable: python2
+  become: yes
+  creates: /usr/local/bin/pip2
+
+- pip:
+    name: cfv
+    executable: pip2
+  become: yes

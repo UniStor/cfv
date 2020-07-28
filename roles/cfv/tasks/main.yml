@@ -1,0 +1,4 @@
+- name: Ubuntu 20.04
+  import_tasks: ubuntu.yml
+  when: ansible_facts['os_family']|lower == 'debian'
+  # https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html
