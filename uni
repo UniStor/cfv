@@ -1,4 +1,4 @@
 ---
-- hosts: bac, local
+- hosts: local
   roles:
     - cfv
