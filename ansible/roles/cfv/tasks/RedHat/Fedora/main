@@ -1,0 +1,21 @@
+---
+- name: codename
+  include_tasks: codename
+
+- name: python3-pip, curl, python2
+  become: yes
+  ansible.builtin.dnf:
+    name:
+    - python3-pip
+    - curl
+    - python2
+    state: latest
+
+# - name: get-pip.py
+# Not needed?
+
+- name: install cfv with pip
+  ansible.builtin.pip:
+    name: cfv
+    executable: pip2
+  become: yes

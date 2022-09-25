@@ -1,8 +1,4 @@
+---
 - name: get release codename
   command: lsb_release -cs
   register: codename
-
-- debug:
-    msg: "{{codename.stdout}}"
-
-
