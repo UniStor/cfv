@@ -1,0 +1,38 @@
+---
+
+- name: Enable universe repository for python2
+  become: yes
+  apt_repository:
+    repo: "{{ item }}"
+  loop:
+  - "deb http://archive.ubuntu.com/ubuntu/ {{codename.stdout}} universe"
+  - "deb http://archive.ubuntu.com/ubuntu/ {{codename.stdout}}-updates universe"
+  - "deb http://security.ubuntu.com/ubuntu/ {{codename.stdout}}-security universe"
+  # https://github.com/ansible/ansible/issues/48714
+
+- name: Install python2
+  become: yes
+  ansible.builtin.apt:
+    pkg:
+    - python2
+    # update_cache: yes
+
+# Not needed if using role's files !
+#- get_url:
+#    url: https://bootstrap.pypa.io/get-pip.py
+#    dest: /tmp/get-pip.py
+
+- name: get-pip.py
+  become: yes
+  script: get-pip.py
+  args:
+    executable: python2
+    creates: /usr/local/bin/pip2
+
+- name: install cfv with pip
+  ansible.builtin.pip:
+    name: cfv
+    executable: pip2
+  become: yes
+
+# https://linuxize.com/post/how-to-install-pip-on-ubuntu-20.04/
