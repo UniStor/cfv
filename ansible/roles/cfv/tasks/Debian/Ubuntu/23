@@ -1,0 +1,16 @@
+---
+# https://itsfoss.com/externally-managed-environment/
+- name: Install pipx
+  ansible.builtin.apt:
+    name: pipx
+    state: present
+  become: true
+
+- name: Reset to load pipx
+  ansible.builtin.meta: reset_connection
+
+- name: Install cfv using pipx
+  ansible.builtin.shell: pipx install cfv
+  args:
+    chdir: somedir/
+    creates: "/home/{{ansible_user}}/.local/bin/cfv"
