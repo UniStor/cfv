@@ -8,6 +8,9 @@ run:
 ## Sha-1
 `cfv -Crrt sha1`
 
+# Home:
+source: https://github.com/cfv-project/cfv
+
 # discussion:
 [Python 3 support](https://github.com/cfv-project/cfv/issues/8)
 
