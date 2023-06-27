@@ -12,5 +12,13 @@
 - name: Install cfv using pipx
   ansible.builtin.shell: pipx install cfv
   args:
-    chdir: somedir/
-    creates: "/home/{{ansible_user}}/.local/bin/cfv"
+    creates: "{{cfv_bin}}"
+
+- name: link cfv into PATH
+  ansible.builtin.file:
+    src: "{{cfv_bin}}"
+    dest: /usr/local/bin/cfv
+    owner: "{{ansible_user}}"
+    group: "{{ansible_user}}"
+    state: link
+  become: true

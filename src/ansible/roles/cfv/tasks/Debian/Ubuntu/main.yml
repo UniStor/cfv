@@ -1,5 +1,5 @@
-- include_tasks: .old/<= 22.yml
-  when: "{{ ansible_distribution_major_version | replace('.','')}} < 23 "
+- include_tasks: .old/22.yml
+  when: "{{ ansible_distribution_major_version}} < 23" # | replace('.','')
 
 - include_tasks: current.yml
-  when: "{{ ansible_distribution_major_version | replace('.','')}} >= 23 "
+  when: "{{ ansible_distribution_major_version}} >= 23"
