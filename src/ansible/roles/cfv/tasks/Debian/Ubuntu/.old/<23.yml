@@ -1,6 +1,5 @@
----
 - name: codename
-  include_tasks: codename
+  include_tasks: codename.yml
   #old: import_tasks
 
 - name: python3-pip, curl
@@ -12,7 +11,7 @@
     - curl
 
 - name: install with python 2
-  include_tasks: python2
+  include_tasks: python2.yml
   when: not python3
 
 # Future
